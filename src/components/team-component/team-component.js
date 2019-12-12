@@ -24,7 +24,7 @@ class TeamComponent extends Component {
         
     }
     
-    sort() {
+    sort() { 
         
     }
 
@@ -38,7 +38,6 @@ class TeamComponent extends Component {
                     <button className="sort">&#8597;</button>
                     <span className="add-channel">
                         <input placeholder="Channel name"/>
-                        <button>&#8853;</button>
                     </span>
                 </div>
             }
