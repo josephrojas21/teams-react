@@ -4,16 +4,23 @@ import './team-component.css';
 class TeamComponent extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            disabled: true
+        }
         this.team = this.props.team;
         this.teamIndex = this.props.teamIndex;
+
+        this.formValidation = this.formValidation.bind(this);
+        
     }
 
     componentDidMount() {
         
     }
 
-    formValidation() {
-        
+    formValidation(event) {
+        const {value} = event.target;
+        value !== '' && isNaN(value) ? this.setState({disabled: false}) : this.setState({disabled: true})
     }
 
     removeChannel(index) {
@@ -29,6 +36,7 @@ class TeamComponent extends Component {
     }
 
     render() {
+        const {disabled} = this.state
         return (
         <div>
             {
@@ -37,8 +45,8 @@ class TeamComponent extends Component {
                     <span className="team-name">{this.team.name}</span>
                     <button className="sort">&#8597;</button>
                     <span className="add-channel">
-                        <input placeholder="Channel name"/>
-                        <button>&#8853;</button>
+                        <input onChange={this.formValidation} placeholder="Channel name"/>
+                        <button disabled={disabled}>&#8853;</button>
                     </span>
                 </div>
             }
