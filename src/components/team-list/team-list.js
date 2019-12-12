@@ -53,7 +53,11 @@ class TeamList extends Component {
             name: nameTeam,
             channels: []
         })
-        this.setState({teams: newTeam})
+        document.getElementById("newTeam").value = "";
+        this.setState({
+            teams: newTeam,
+            disabled: true
+        })
         
     }
 
@@ -65,7 +69,7 @@ class TeamList extends Component {
                     <ul>
                         { this.teams && this.teams.map((team, idx) => (
                             <li key={idx}>
-                                <TeamComponent team={team}/>
+                                <TeamComponent team={team} teamIndex={idx}/>
                             </li>
                         ))}
                     </ul>  
