@@ -34,6 +34,7 @@ class TeamList extends Component {
         };
 
         this.formValidation = this.formValidation.bind(this);
+        this.addTeam = this.addTeam.bind(this);
     }
 
     componentDidMount() {
@@ -45,8 +46,15 @@ class TeamList extends Component {
         value !== '' && isNaN(value) ? this.setState({disabled: false}) : this.setState({disabled: true})
     }
 
-    addTeam(event) { 
-    
+    addTeam() { 
+        let nameTeam = document.getElementById("newTeam").value
+        let newTeam = this.state.teams;
+        newTeam.push({
+            name: nameTeam,
+            channels: []
+        })
+        this.setState({teams: newTeam})
+        
     }
 
     render() {
