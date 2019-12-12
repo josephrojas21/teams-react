@@ -8,7 +8,8 @@ class TeamComponent extends Component {
         this.teamIndex = this.props.teamIndex;
         this.state = {
             disabled: true,
-            team: this.team
+            team: this.team,
+            orderDefault: 'nameAscending'
         }
 
         this.formValidation = this.formValidation.bind(this);
@@ -49,8 +50,26 @@ class TeamComponent extends Component {
     }
     
     sort() { 
-
-        
+        let team = this.state.team;
+        switch (this.state.orderDefault) {
+            case 'nameAscending':
+                team.channels.sort((a, b) => a.name.localeCompare(b.name));
+                console.log(team.channels);
+                this.setState({team: team, orderDefault: 'nameDescending'})
+                break;
+            case 'nameDescending':
+                team.channels.sort((a, b) => b.name.localeCompare(a.name));
+                console.log(team.channels);
+                this.setState({team: team, orderDefault: 'order'})
+                break;
+            case 'order':
+                team.channels.sort((a, b) => a.index - b.index);
+                console.log(team.channels);
+                this.setState({team: team, orderDefault: 'nameAscending'})
+                break;
+            default:
+                break;
+        } 
     }
 
     render() {
